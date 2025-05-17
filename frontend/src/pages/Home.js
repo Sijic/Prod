@@ -11,7 +11,7 @@ import TestimonialCard from '../components/TestimonialCard';
 import VideoSection from '../components/VideoSection';
 
 // Images from vision expert
-const heroImage = 'https://images.unsplash.com/photo-1612544409025-e1f6a56c1152'; // Film set with dark mood
+const heroImage = '/Film_Set_Loop_Video_Ready.gif'; // Film set with dark mood
 const scriptImage = 'https://images.unsplash.com/photo-1571232151946-f7f00c61ade7'; // Screenwriting
 const directorImage = 'https://images.unsplash.com/photo-1495131796982-281014f71fbd'; // Director working with actors
 const marketingImage = 'https://images.unsplash.com/photo-1485846234645-a62644f84728'; // Film marketing
@@ -86,7 +86,7 @@ const Home = () => {
       transition={{ duration: 0.5 }}
     >
       <HeroSection 
-        title="Универсальный киноассистент для вашего проекта"
+        title="Видео продакшн сервис  -где всё на своих местах"
         subtitle="Мы помогаем создавать качественные фильмы, сериалы и видеоконтент на всех этапах производства"
         ctaText="Начать сотрудничество"
         ctaLink="/contact"
