@@ -1,0 +1,21 @@
+<!doctype html><html lang="ru"><head><script type="text/javascript">
+  // Получаем путь, который запросил пользователь, но вызвал 404
+  var path = window.location.pathname;
+  // Получаем параметры запроса и хэш (если есть)
+  var params = window.location.search;
+  var hash = window.location.hash;
+
+  // Перенаправляем на index.html, сохраняя путь в хэше для обработки роутером
+  // или передавая его в параметре, в зависимости от настроек вашего роутера
+  // Этот вариант сохраняет путь в хэше:
+  // window.location.replace('/?p=' + path.substring(1) + params + hash);
+  // Этот вариант пытается использовать sessionStorage и перенаправить на корень, чтобы роутер React (если он настроен на BrowserRouter) подхватил:
+  var segment = sessionStorage.getItem('ghPages:redirect');
+  sessionStorage.removeItem('ghPages:redirect');
+  if (segment) {
+    window.location.pathname = segment;
+  } else if (path !== '/' && path.toLowerCase() !== '/404.html') { // Не перенаправлять с главной или с самой 404 страницы
+    sessionStorage.setItem('ghPages:redirect', path + params + hash);
+    window.location.replace('/'); // Перенаправляем на корень, чтобы index.html загрузился
+  }
+</script><meta name="yandex-verification" content="cdd5a395736ef68b"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="SKLAD.PRODUCTION - универсальный киноассистент и консультант продакшн-компании"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><title>SKLAD.PRODUCTION</title><script defer="defer" src="/static/js/main.243a0bf9.js"></script><link href="/static/css/main.4717ac9b.css" rel="stylesheet"></head><body><noscript>Для просмотра сайта необходимо включить JavaScript в вашем браузере.</noscript><div id="root"></div><script src="src/index.js"></script></body></html>
