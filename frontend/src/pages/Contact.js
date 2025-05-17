@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // Убедитесь, что useEffect импортирован
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaTelegramPlane, FaInstagram, FaYoutube, FaVk } from 'react-icons/fa';
 
@@ -10,32 +10,44 @@ import ContactForm from '../components/ContactForm';
 const heroImage = 'https://images.unsplash.com/photo-1607112812619-182cb1c7bb61'; // Post-production image for hero
 
 const Contact = () => {
+  // --- НАЧАЛО ДОБАВЛЕННОГО КОДА ДЛЯ ПРОКРУТКИ ---
+  useEffect(() => {
+    // Эта функция выполнится после того, как компонент будет отображен
+    if (window.location.hash === '#contact-form') {
+      const element = document.getElementById('contact-form');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' }); // 'smooth' для плавной прокрутки
+      }
+    }
+  }, []); // Пустой массив зависимостей означает, что эффект выполнится один раз после монтирования
+  // --- КОНЕЦ ДОБАВЛЕННОГО КОДА ДЛЯ ПРОКРУТКИ ---
+
   const contactInfo = [
     {
       id: 1,
       icon: <FaPhoneAlt size={20} />,
       title: 'Телефон',
-      details: ['+7 701 765 4321']
+      details: ['+7 776 800 6262']
     },
     {
       id: 2,
       icon: <FaEnvelope size={20} />,
       title: 'Email',
-      details: ['info@sklad.production', 'support@sklad.production']
+      details: ['info@sklad.productions', 'office@sklad.productions']
     },
     {
       id: 3,
       icon: <FaMapMarkerAlt size={20} />,
       title: 'Адрес',
-      details: ['Алматы, Казахстан', 'ул. Достык 123, офис 45']
+      details: ['Алматы, Казахстан', 'мкр. Баганашил']
     }
   ];
 
   const socialLinks = [
     { id: 1, icon: <FaTelegramPlane size={22} />, url: 'https://t.me/artelcinema', label: 'Telegram' },
-    { id: 2, icon: <FaInstagram size={22} />, url: 'https://instagram.com', label: 'Instagram' },
-    { id: 3, icon: <FaYoutube size={22} />, url: 'https://youtube.com', label: 'YouTube' },
-    { id: 4, icon: <FaVk size={22} />, url: 'https://vk.com', label: 'VK' }
+    { id: 2, icon: <FaInstagram size={22} />, url: 'https://instagram.com/sklad.productions', label: 'Instagram' },
+    { id: 3, icon: <FaYoutube size={22} />, url: 'https://youtube.com/@sijicbond', label: 'YouTube' }, // Обратите внимание, этот URL для YouTube выглядит неполным или некорректным
+    { id: 4, icon: <FaVk size={22} />, url: 'https://vk.com/sijicbond', label: 'VK' }
   ];
 
   return (
@@ -49,12 +61,12 @@ const Contact = () => {
         title="Свяжитесь с нами"
         subtitle="Мы готовы ответить на ваши вопросы и обсудить потенциальное сотрудничество"
         ctaText="Написать нам"
-        ctaLink="#contact-form"
+        ctaLink="#contact-form" // Эта ссылка в HeroSection также будет работать с якорем
         backgroundImage={heroImage}
       />
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24 bg-black" id="contact-form">
+      <section className="py-16 md:py-24 bg-black" id="contact-form"> {/* id здесь уже есть, отлично! */}
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div
@@ -111,7 +123,7 @@ const Contact = () => {
             </motion.div>
 
             <div>
-              <ContactForm />
+              <ContactForm /> {/* Предполагаем, что компонент ContactForm не влияет на прокрутку */}
             </div>
           </div>
         </div>
@@ -121,7 +133,7 @@ const Contact = () => {
       <section className="h-[400px] bg-zinc-900 relative">
         <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.918302969231!2d76.94397207720598!3d43.23992787123411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836eb14cac9fe1%3A0x4a748240ae35b9fb!2z0YPQu9C40YbQsCDQlNC-0YHRgtGL0LosINCQ0LvQvNCw0YLRiw!5e0!3m2!1sru!2skz!4v1714497635319!5m2!1sru!2skz" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.918302969231!2d76.94397207720598!3d43.23992787123411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836eb14cac9fe1%3A0x4a748240ae35b9fb!2z0YPQu9C40YbQsCDQlNC-0YHRgtGL0LosINCQ0LvQvNCw0YLRiw!5e0!3m2!1sru!2skz!4v1714497635319!5m2!1sru!2skz" // И этот URL для карты Google выглядит неполным или тестовым
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 

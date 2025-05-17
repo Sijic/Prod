@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Link используется для внутренних навигационных ссылок
 import { motion } from 'framer-motion';
 import { FaTelegramPlane, FaInstagram, FaYoutube, FaVk } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  // URL к вашим юридическим документам на сайте
+  // Предполагаем, что ваш сайт доступен по https://sklad.productions/
+  // и файлы лежат в docs/legal/ относительно корня публикуемой папки
+  const privacyPolicyUrl = "/legal/Privacy-Policy-Sklad-Productions.pdf";
+  const termsOfServiceUrl = "/legal/Terms-of-Service-Sklad-Productions.pdf";
+
   const footerAnimation = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -51,13 +57,13 @@ const Footer = () => {
               <a href="https://t.me/artelcinema" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <FaTelegramPlane size={22} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://instagram.com/sklad.productions" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <FaInstagram size={22} />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.youtube.com/@SkladProductions" /* ИЗМЕНИТЕ НА ВАШ РЕАЛЬНЫЙ YOUTUBE URL */ target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <FaYoutube size={22} />
               </a>
-              <a href="https://vk.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://vk.com/sijicbond" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <FaVk size={22} />
               </a>
             </div>
@@ -79,8 +85,8 @@ const Footer = () => {
           <motion.div variants={item}>
             <h3 className="text-xl font-semibold mb-6">Контакты</h3>
             <ul className="space-y-3 text-gray-400">
-              <li>Email: <a href="mailto:info@sklad.production" className="hover:text-white transition-colors">info@sklad.production</a></li>
-              <li>Телефон: <a href="tel:+77017654321" className="hover:text-white transition-colors">+7 701 765 4321</a></li>
+              <li>Email: <a href="mailto:info@sklad.productions" className="hover:text-white transition-colors">info@sklad.productions</a></li>
+              <li>Телефон: <a href="tel:+77768006262" className="hover:text-white transition-colors">+7 776 800 6262</a></li>
               <li>Адрес: Алматы, Казахстан</li>
             </ul>
           </motion.div>
@@ -89,8 +95,26 @@ const Footer = () => {
         <motion.div variants={item} className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
           <p>© {currentYear} SKLAD.PRODUCTION. Все права защищены.</p>
           <div className="mt-4 md:mt-0">
-            <a href="#privacy" className="hover:text-white transition-colors mr-6">Политика конфиденциальности</a>
-            <a href="#terms" className="hover:text-white transition-colors">Условия использования</a>
+            {/* --- НАЧАЛО ИЗМЕНЕНИЙ ДЛЯ ССЫЛОК НА ДОКУМЕНТЫ --- */}
+            <a 
+              href={privacyPolicyUrl} 
+              target="_blank" // Открывать в новой вкладке
+              rel="noopener noreferrer" // Для безопасности при открытии в новой вкладке
+              download="Privacy-Policy-Sklad-Productions.pdf" // Предлагаемое имя файла для скачивания
+              className="hover:text-white transition-colors mr-6"
+            >
+              Политика конфиденциальности
+            </a>
+            <a 
+              href={termsOfServiceUrl} 
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Terms-of-Service-Sklad-Productions.pdf" // Предлагаемое имя файла для скачивания
+              className="hover:text-white transition-colors"
+            >
+              Условия использования
+            </a>
+            {/* --- КОНЕЦ ИЗМЕНЕНИЙ ДЛЯ ССЫЛОК НА ДОКУМЕНТЫ --- */}
           </div>
         </motion.div>
       </div>
